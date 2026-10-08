@@ -4,7 +4,7 @@ A responsive frontend web application that helps students discover upcoming **te
 
 ## 🌐 Live Demo
 
-**Deployed App:devboard-roan.vercel.app
+Deployed App: devboard-roan.vercel.app
 
 ## 📌 GitHub Repository
 

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="DevBoard - Discover hackathons, workshops and technology events">
+
+    <title>DevBoard | Discover Tech Events</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<link rel="stylesheet" href="style.css">
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="#" class="logo" onclick="showHome()">
+                <span class="logo-icon">⌘</span>
+                DevBoard
+            </a>
+
+            <nav aria-label="Main navigation">
+                <button class="nav-link active" id="eventsNav"
+                        onclick="showHome()">
+                    Events
+                </button>
+
+                <button class="nav-link" id="favoritesNav"
+                        onclick="showFavorites()">
+                    ♥ Saved
+                    <span id="favoriteCount" class="count">0</span>
+                </button>
+            </nav>
+
+            <button
+                class="theme-btn"
+                id="themeToggle"
+                onclick="toggleTheme()"
+                aria-label="Toggle dark mode">
+                🌙
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+    <main>
+
+        <!-- ================= HOME ================= -->
+        <section id="homePage" class="page">
+
+            <div class="hero">
+
+                <div class="hero-content">
+
+                    <span class="eyebrow">
+                        🚀 For students & developers
+                    </span>
+
+                    <h1>
+                        Discover your next
+                        <span>tech adventure.</span>
+                    </h1>
+
+                    <p>
+                        Find hackathons, workshops, conferences and
+                        tech events that help you learn, build and connect.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= SEARCH & FILTER ================= -->
+
+            <section class="controls-section">
+
+                <div class="search-wrapper">
+
+                    <span class="search-icon">⌕</span>
+
+                    <label for="searchInput" class="sr-only">
+                        Search events
+                    </label>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search events by name or keyword..."
+                        autocomplete="off">
+
+                    <button
+                        id="clearSearch"
+                        class="clear-search"
+                        onclick="clearSearch()"
+                        aria-label="Clear search">
+                        ×
+                    </button>
+
+                </div>
+
+
+                <div class="filter-row">
+
+                    <div class="categories" role="group"
+                         aria-label="Event categories">
+
+                        <button class="category-btn active"
+                                data-category="All">
+                            All
+                        </button>
+
+                        <button class="category-btn"
+                                data-category="Hackathon">
+                            Hackathon
+                        </button>
+
+                        <button class="category-btn"
+                                data-category="Workshop">
+                            Workshop
+                        </button>
+
+                        <button class="category-btn"
+                                data-category="Tech Talk">
+                            Tech Talk
+                        </button>
+
+                        <button class="category-btn"
+                                data-category="Conference">
+                            Conference
+                        </button>
+
+                    </div>
+
+
+                    <div class="sort-wrapper">
+
+                        <label for="sortSelect">
+                            Sort:
+                        </label>
+
+                        <select id="sortSelect">
+                            <option value="date-asc">
+                                Nearest date
+                            </option>
+
+                            <option value="date-desc">
+                                Latest date
+                            </option>
+
+                            <option value="category">
+                                Category
+                            </option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= EVENT SECTION ================= -->
+
+            <section class="events-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Upcoming events</h2>
+
+                        <p id="eventCount">
+                            Loading events...
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- Loading -->
+                <div id="loadingState" class="state-container">
+
+                    <div class="loader"></div>
+
+                    <h3>Loading events...</h3>
+
+                    <p>Finding the latest tech events for you.</p>
+
+                </div>
+
+
+                <!-- Events -->
+                <div id="eventsGrid" class="events-grid"></div>
+
+
+                <!-- No results -->
+                <div id="noResults" class="state-container hidden">
+
+                    <div class="state-icon">🔍</div>
+
+                    <h3>No events found</h3>
+
+                    <p>
+                        Try another search or category.
+                    </p>
+
+                    <button class="primary-btn"
+                            onclick="resetFilters()">
+                        Reset filters
+                    </button>
+
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <!-- ================= FAVORITES ================= -->
+
+        <section id="favoritesPage" class="page hidden">
+
+            <div class="page-header">
+
+                <button class="back-btn" onclick="showHome()">
+                    ← Back to events
+                </button>
+
+                <h1>Your saved events</h1>
+
+                <p>
+                    Events you've saved for later.
+                </p>
+
+            </div>
+
+            <div id="favoritesGrid" class="events-grid"></div>
+
+
+            <div id="emptyFavorites"
+                 class="state-container hidden">
+
+                <div class="state-icon">♡</div>
+
+                <h3>No saved events yet</h3>
+
+                <p>
+                    Save events you're interested in and
+                    they'll appear here.
+                </p>
+
+                <button class="primary-btn"
+                        onclick="showHome()">
+                    Explore events
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= DETAILS ================= -->
+
+        <section id="detailsPage" class="page hidden">
+
+            <div id="eventDetails"></div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div>
+                <strong>⌘ DevBoard</strong>
+
+                <p>
+                    Helping students discover opportunities.
+                </p>
+            </div>
+
+            <p>
+                Built with HTML, CSS & JavaScript
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="event.js"></script>
+
+</body>
+</html>

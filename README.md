@@ -52,7 +52,7 @@ DevBoard/
 │
 ├── index.html
 ├── style.css
-├── script.js
+├── event.js
 └── README.md
 ```
 
@@ -80,7 +80,7 @@ Handles:
 * Animations
 * Mobile and tablet layouts
 
-### `script.js`
+### `event.js`
 
 Handles the application's functionality:
 
